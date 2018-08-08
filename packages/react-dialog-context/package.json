@@ -1,0 +1,23 @@
+{
+    "name": "react-dialog-context",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "typings": "index.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/deng-yc/react-dialog-context.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/deng-yc/react-native-dialog-context/issues"
+    },
+    "homepage": "https://github.com/deng-yc/react-native-dialog-context#readme",
+    "devDependencies": {
+        "@types/react": "^16.4.8"
+    }
+}
