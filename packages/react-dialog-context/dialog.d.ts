@@ -30,5 +30,5 @@ export declare class Dialog {
      */
     show<T>(obj: any, activationData?: any, context?: string): Promise<T>;
 }
-declare var dialog: Dialog;
+export declare const dialog: Dialog;
 export default dialog;

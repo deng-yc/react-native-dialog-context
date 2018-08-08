@@ -115,6 +115,6 @@ var Dialog = /** @class */ (function () {
     return Dialog;
 }());
 exports.Dialog = Dialog;
-var dialog = new Dialog();
-exports.default = dialog;
+exports.dialog = new Dialog();
+exports.default = exports.dialog;
 //# sourceMappingURL=dialog.js.map

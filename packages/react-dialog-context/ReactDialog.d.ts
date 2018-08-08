@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import React = require('react');
 import { IDialog } from './types';
 export interface ReactDialogProps {
