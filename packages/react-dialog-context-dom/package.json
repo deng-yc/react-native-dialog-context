@@ -14,9 +14,9 @@
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/deng-yc/react-native-dialog-context/issues"
+        "url": "https://github.com/deng-yc/react-dialog-context/issues"
     },
-    "homepage": "https://github.com/deng-yc/react-native-dialog-context#readme",
+    "homepage": "https://github.com/deng-yc/react-dialog-context#readme",
     "dependencies": {
         "react-dialog-context": "^1.0.0"
     },
