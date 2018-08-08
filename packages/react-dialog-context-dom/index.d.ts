@@ -9,6 +9,7 @@ export interface ReactDialogContextState {
     dialogs: IDialog[];
 }
 export default class ReactDialogContext extends React.Component<ReactDialogContextProps, ReactDialogContextState> {
+    constructor(props: any, context: any);
     state: {
         dialogs: any[];
     };

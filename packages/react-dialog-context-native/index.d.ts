@@ -9,6 +9,7 @@ export interface ReactNativeDialogContextState {
     dialogs: IDialog[];
 }
 export default class ReactNativeDialogContext extends React.Component<ReactNativeDialogContextProps, ReactNativeDialogContextState> {
+    constructor(props: any, context: any);
     state: {
         dialogs: any[];
     };

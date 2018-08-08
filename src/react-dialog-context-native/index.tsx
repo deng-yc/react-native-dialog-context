@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IDialog, ReactDialog } from 'react-dialog-context';
 import { View, ViewProps } from 'react-native';
+import { dialog } from 'react-dialog-context';
 
 export interface ReactNativeDialogContextProps extends ViewProps {
     name?: string;
@@ -11,6 +12,12 @@ export interface ReactNativeDialogContextState{
 }
 
 export default class ReactNativeDialogContext extends React.Component<ReactNativeDialogContextProps, ReactNativeDialogContextState> {
+
+    constructor(props, context) {
+        super(props, context);
+        dialog.addContext(props.name || "default", this);
+    }
+
     state={
         dialogs:[]
     }

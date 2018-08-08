@@ -29,13 +29,15 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_dialog_context_1 = require("react-dialog-context");
+var react_dialog_context_2 = require("react-dialog-context");
 var ReactDialogContext = /** @class */ (function (_super) {
     __extends(ReactDialogContext, _super);
-    function ReactDialogContext() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    function ReactDialogContext(props, context) {
+        var _this = _super.call(this, props, context) || this;
         _this.state = {
             dialogs: []
         };
+        react_dialog_context_2.dialog.addContext(props.name || "default", _this);
         return _this;
     }
     ReactDialogContext.prototype.addHost = function (theDialog) {
@@ -64,8 +66,8 @@ var ReactDialogContext = /** @class */ (function (_super) {
         var dialogs = this.state.dialogs;
         var components = [];
         for (var _i = 0, dialogs_1 = dialogs; _i < dialogs_1.length; _i++) {
-            var dialog = dialogs_1[_i];
-            components.push(React.createElement(react_dialog_context_1.ReactDialog, { key: dialog.id, dialog: dialog }));
+            var dialog_1 = dialogs_1[_i];
+            components.push(React.createElement(react_dialog_context_1.ReactDialog, { key: dialog_1.id, dialog: dialog_1 }));
         }
         return React.createElement("div", __assign({}, viewProps),
             components,

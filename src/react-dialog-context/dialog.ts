@@ -106,5 +106,5 @@ export class Dialog {
         });
     }
 }
-var dialog = new Dialog();
+export const dialog = new Dialog();
 export default dialog;

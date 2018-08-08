@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DetailedHTMLProps } from 'react';
 import { IDialog, ReactDialog } from 'react-dialog-context';
+import { dialog } from 'react-dialog-context';
 
 export interface ReactDialogContextProps extends DetailedHTMLProps<React.HTMLAttributes<any>,any> {
     name?: string;
@@ -11,6 +12,11 @@ export interface ReactDialogContextState{
 }
 
 export default class ReactDialogContext extends React.Component<ReactDialogContextProps, ReactDialogContextState> {
+    constructor(props, context) {
+        super(props, context);
+
+        dialog.addContext(props.name || "default", this);
+    }
     state={
         dialogs:[]
     }
