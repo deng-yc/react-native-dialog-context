@@ -21,7 +21,7 @@ export declare class Dialog {
      * @param obj
      * @param rest
      */
-    close(obj: any, ...rest: any[]): void;
+    close(obj: any, ...args: any[]): Promise<void>;
     /**
      * 显示对话框
      * @param obj

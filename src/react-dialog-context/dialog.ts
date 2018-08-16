@@ -56,10 +56,10 @@ export class Dialog {
      * @param obj
      * @param rest
      */
-    close(obj, ...rest) {
+    async close(obj, ...args) {
         var theDialog = this.getDialog(obj);
         if (theDialog) {
-            theDialog.close.apply(theDialog, rest);
+            await theDialog.close(...args);
         }
     }
     /**
@@ -81,15 +81,9 @@ export class Dialog {
                 owner: obj,
                 activationData,
                 context: dialogContext,
-                close: function (...args) {
-                    dialogContext.removeHost(theDialog);
-                    if (args.length === 0) {
-                        resolve();
-                    } else if (args.length === 1) {
-                        resolve(args[0]);
-                    } else {
-                        resolve.apply(self, args);
-                    }
+                close: async (...args)=> {
+                    await dialogContext.removeHost(theDialog);                   
+                    resolve(...args);                    
                 }
             }
             if (typeof obj == "function") {

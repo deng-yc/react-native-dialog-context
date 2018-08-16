@@ -30,27 +30,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_dialog_context_1 = require("react-dialog-context");
 var react_native_1 = require("react-native");
-var react_dialog_context_2 = require("react-dialog-context");
+var cached = {};
 var ReactNativeDialogContext = /** @class */ (function (_super) {
     __extends(ReactNativeDialogContext, _super);
     function ReactNativeDialogContext(props, context) {
         var _this = _super.call(this, props, context) || this;
         _this.state = {
-            dialogs: []
+            dialogs: {}
         };
-        react_dialog_context_2.dialog.addContext(props.name || "default", _this);
+        react_dialog_context_1.dialog.addContext(props.name || "default", _this);
+        cached[_this.name] = {};
         return _this;
     }
     ReactNativeDialogContext.prototype.addHost = function (theDialog) {
-        var dialogs = this.state.dialogs.concat([theDialog]);
-        this.setState({
-            dialogs: dialogs
+        var _this = this;
+        cached[this.name][theDialog.id] = theDialog;
+        return new Promise(function (resolve) {
+            _this.setState(cached[_this.name], resolve);
         });
     };
     ReactNativeDialogContext.prototype.removeHost = function (theDialog) {
-        var dialogs = this.state.dialogs.filter(function (dialog) { return dialog.id != theDialog.id; });
-        this.setState({
-            dialogs: dialogs
+        var _this = this;
+        delete cached[this.name][theDialog.id];
+        return new Promise(function (resolve) {
+            _this.setState(cached[_this.name], resolve);
         });
     };
     ReactNativeDialogContext.prototype.render = function () {
@@ -66,9 +69,11 @@ var ReactNativeDialogContext = /** @class */ (function (_super) {
         }
         var dialogs = this.state.dialogs;
         var components = [];
-        for (var _i = 0, dialogs_1 = dialogs; _i < dialogs_1.length; _i++) {
-            var dialog_1 = dialogs_1[_i];
-            components.push(React.createElement(react_dialog_context_1.ReactDialog, { key: dialog_1.id, dialog: dialog_1 }));
+        for (var id in dialogs) {
+            var dialog_1 = dialogs[id];
+            if (dialog_1) {
+                components.push(React.createElement(react_dialog_context_1.ReactDialog, { key: dialog_1.id, dialog: dialog_1 }));
+            }
         }
         return React.createElement(react_native_1.View, __assign({ style: viewStyles }, viewProps),
             components,

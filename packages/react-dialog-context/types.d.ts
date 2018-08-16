@@ -1,7 +1,7 @@
 export interface IDialogContext {
     name?: string;
-    addHost: (dialog: IDialog) => any;
-    removeHost: (dialog: IDialog) => any;
+    addHost: (dialog: IDialog) => Promise<void>;
+    removeHost: (dialog: IDialog) => Promise<void>;
 }
 export interface IDialog {
     id: string;

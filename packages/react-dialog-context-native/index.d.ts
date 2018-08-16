@@ -1,19 +1,21 @@
-/// <reference types="react" />
 import * as React from 'react';
-import { IDialog } from 'react-dialog-context';
+import { IDialog, Dialog } from 'react-dialog-context';
 import { ViewProps } from 'react-native';
 export interface ReactNativeDialogContextProps extends ViewProps {
     name?: string;
 }
 export interface ReactNativeDialogContextState {
-    dialogs: IDialog[];
+    dialogs: {
+        [id: string]: Dialog;
+    };
 }
 export default class ReactNativeDialogContext extends React.Component<ReactNativeDialogContextProps, ReactNativeDialogContextState> {
+    name: string;
     constructor(props: any, context: any);
     state: {
-        dialogs: any[];
+        dialogs: {};
     };
-    addHost(theDialog: IDialog): void;
-    removeHost(theDialog: IDialog): void;
+    addHost(theDialog: IDialog): Promise<void>;
+    removeHost(theDialog: IDialog): Promise<void>;
     render(): JSX.Element;
 }

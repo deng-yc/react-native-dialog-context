@@ -1,6 +1,6 @@
 {
     "name": "react-dialog-context-native",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "",
     "main": "index.js",
     "typings": "index.ts",
@@ -18,7 +18,7 @@
     },
     "homepage": "https://github.com/deng-yc/react-dialog-context#readme",
     "dependencies": {
-        "react-dialog-context": "^1.0.2"
+        "react-dialog-context": "^1.0.3"
     },
     "devDependencies": {
         "@types/react": "^16.4.8",
