@@ -1,1 +1,1 @@
-# react-native-dialog-context
+# react-dialog-context
