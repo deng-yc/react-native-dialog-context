@@ -27,13 +27,13 @@ export default class ReactDialogContext extends React.Component<ReactDialogConte
     addHost(theDialog: IDialog): Promise<void> {
         cached[this.name][theDialog.id] = theDialog;
         return new Promise(resolve => {
-            this.setState(cached[this.name], resolve);
+            this.setState({ dialogs: cached[this.name] }, resolve);
         })
     }
     removeHost(theDialog: IDialog): Promise<void>  {
         delete cached[this.name][theDialog.id];
         return new Promise(resolve => {
-            this.setState(cached[this.name], resolve);
+            this.setState({ dialogs: cached[this.name] }, resolve);
         })
     }
     public render() {
