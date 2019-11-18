@@ -1,15 +1,15 @@
-import React = require('react');
-import { IDialog } from './types';
-
+import React = require("react");
+import { IDialog } from "./types";
 
 export interface ReactDialogProps {
-    dialog: IDialog
+  dialog: IDialog;
 }
 
-export class ReactDialog extends React.Component<ReactDialogProps, {}>{
-
-    render() {
-        const { dialog } = this.props;
-        return <dialog.owner dialog={dialog} {...dialog.activationData} />
-    }
+export function ReactDialog(props: ReactDialogProps) {
+  const { dialog } = props;
+  return (
+    <dialog.owner dialog={dialog} {...dialog.activationData}></dialog.owner>
+  );
 }
+
+export default ReactDialog;

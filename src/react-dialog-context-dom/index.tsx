@@ -54,10 +54,10 @@ export default class ReactDialogContext extends React.Component<ReactDialogConte
                 components.push(<ReactDialog key={dialog.id} dialog={dialog} />);
             }
         }
-        return <div {...viewProps}>
+        return <React.Fragment>
             {components}
             {children}
-        </div>
+        </React.Fragment>
     }
 }
 

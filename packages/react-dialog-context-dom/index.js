@@ -1,28 +1,3 @@
-"use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    }
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -32,41 +7,36 @@ var __rest = (this && this.__rest) || function (s, e) {
             t[p[i]] = s[p[i]];
     return t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = require("react");
-var react_dialog_context_1 = require("react-dialog-context");
-var cached = {};
-var ReactDialogContext = /** @class */ (function (_super) {
-    __extends(ReactDialogContext, _super);
-    function ReactDialogContext(props, context) {
-        var _this = _super.call(this, props, context) || this;
-        _this.state = {
+import * as React from 'react';
+import { dialog, ReactDialog } from 'react-dialog-context';
+let cached = {};
+export default class ReactDialogContext extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
             dialogs: {}
         };
-        react_dialog_context_1.dialog.addContext(props.name || "default", _this);
-        cached[_this.name] = {};
-        return _this;
+        dialog.addContext(props.name || "default", this);
+        cached[this.name] = {};
     }
-    ReactDialogContext.prototype.addHost = function (theDialog) {
-        var _this = this;
+    addHost(theDialog) {
         cached[this.name][theDialog.id] = theDialog;
-        return new Promise(function (resolve) {
-            _this.setState({ dialogs: cached[_this.name] }, resolve);
+        return new Promise(resolve => {
+            this.setState({ dialogs: cached[this.name] }, resolve);
         });
-    };
-    ReactDialogContext.prototype.removeHost = function (theDialog) {
-        var _this = this;
+    }
+    removeHost(theDialog) {
         delete cached[this.name][theDialog.id];
-        return new Promise(function (resolve) {
-            _this.setState({ dialogs: cached[_this.name] }, resolve);
+        return new Promise(resolve => {
+            this.setState({ dialogs: cached[this.name] }, resolve);
         });
-    };
-    ReactDialogContext.prototype.render = function () {
-        var _a = this.props, name = _a.name, style = _a.style, children = _a.children, viewProps = __rest(_a, ["name", "style", "children"]);
+    }
+    render() {
+        const _a = this.props, { name, style, children } = _a, viewProps = __rest(_a, ["name", "style", "children"]);
         var viewStyles = [styles.dialogContext];
         if (style) {
             if (Array.isArray(style)) {
-                viewStyles.push.apply(viewStyles, style);
+                viewStyles.push(...style);
             }
             else {
                 viewStyles.push(style);
@@ -74,20 +44,18 @@ var ReactDialogContext = /** @class */ (function (_super) {
         }
         var dialogs = this.state.dialogs;
         var components = [];
-        for (var id in dialogs) {
-            var dialog_1 = dialogs[id];
-            if (dialog_1) {
-                components.push(React.createElement(react_dialog_context_1.ReactDialog, { key: dialog_1.id, dialog: dialog_1 }));
+        for (const id in dialogs) {
+            const dialog = dialogs[id];
+            if (dialog) {
+                components.push(React.createElement(ReactDialog, { key: dialog.id, dialog: dialog }));
             }
         }
-        return React.createElement("div", __assign({}, viewProps),
+        return React.createElement(React.Fragment, null,
             components,
             children);
-    };
-    return ReactDialogContext;
-}(React.Component));
-exports.default = ReactDialogContext;
-var styles = {
+    }
+}
+const styles = {
     dialogContext: {}
 };
 //# sourceMappingURL=index.js.map
