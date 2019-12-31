@@ -1,8 +1,7 @@
-import React = require('react');
-import { IDialog } from './types';
+/// <reference types="react" />
+import { IDialog } from "./types";
 export interface ReactDialogProps {
     dialog: IDialog;
 }
-export declare class ReactDialog extends React.Component<ReactDialogProps, {}> {
-    render(): JSX.Element;
-}
+export declare function ReactDialog(props: ReactDialogProps): JSX.Element;
+export default ReactDialog;

@@ -8,7 +8,7 @@ export interface IDialog {
     owner: any;
     activationData: any;
     context: IDialogContext;
-    close: (...args) => any;
+    close: (...args: any[]) => any;
     element?: any;
 }
 export interface IDialogObject {

@@ -19,6 +19,15 @@ export class Dialog {
         };
     }
     /**
+     * 删除context
+     * @param name
+     */
+    removeContext(name) {
+        if (contexts[name]) {
+            delete contexts[name];
+        }
+    }
+    /**
      * 获取context
      * @param name
      */
@@ -61,6 +70,9 @@ export class Dialog {
     show(obj, activationData, context = "default") {
         var self = this;
         var dialogContext = contexts[context];
+        if (!dialogContext) {
+            throw new Error("dialogHost[" + context + "]不存在");
+        }
         return new Promise(resolve => {
             var theDialog;
             if (obj.keep) {

@@ -1,3 +1,4 @@
+import React from "react";
 export function ReactDialog(props) {
     const { dialog } = props;
     return (React.createElement(dialog.owner, Object.assign({ dialog: dialog }, dialog.activationData)));

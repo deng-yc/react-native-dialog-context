@@ -1,4 +1,4 @@
-import { IDialog, IDialogContext } from './types';
+import { IDialog, IDialogContext } from "./types";
 export declare class Dialog {
     /**
      * 新增context
@@ -6,6 +6,11 @@ export declare class Dialog {
      * @param dialogContext
      */
     addContext(name: string, dialogContext: IDialogContext): void;
+    /**
+     * 删除context
+     * @param name
+     */
+    removeContext(name: string): void;
     /**
      * 获取context
      * @param name
@@ -21,7 +26,7 @@ export declare class Dialog {
      * @param obj
      * @param rest
      */
-    close(obj: any, ...args: any[]): Promise<void>;
+    close(obj: any, ...args: any[]): void;
     /**
      * 显示对话框
      * @param obj

@@ -2,8 +2,9 @@
   "compileOnSave": true,
   "buildOnSave": true,
   "compilerOptions": {
-    "module": "es6",
-    "target": "es6",
+    "module": "es2015",
+    "target": "es2015",
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
     "removeComments": false,
