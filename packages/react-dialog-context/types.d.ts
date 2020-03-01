@@ -1,5 +1,6 @@
 export interface IDialogContext {
     name?: string;
+    initialZIndex?: number;
     addHost: (dialog: IDialog) => Promise<void>;
     removeHost: (dialog: IDialog) => Promise<void>;
 }

@@ -2,7 +2,7 @@ const contexts = {};
 let last_dialogId = 1000;
 const getNextDialogId = () => {
     last_dialogId = last_dialogId + 1;
-    return "dialog-" + last_dialogId;
+    return last_dialogId;
 };
 export class Dialog {
     /**
@@ -78,9 +78,11 @@ export class Dialog {
             if (obj.keep) {
                 theDialog = this.getDialog(obj);
             }
+            const id = getNextDialogId();
             theDialog = theDialog || {
-                id: getNextDialogId(),
+                id: `dialog-${id}`,
                 owner: obj,
+                zIndex: (dialogContext.initialZIndex || 10000) + id,
                 activationData,
                 context: dialogContext,
                 close: (...args) => {

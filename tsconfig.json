@@ -1,22 +1,22 @@
 {
-  "compileOnSave": true,
-  "buildOnSave": true,
-  "compilerOptions": {
-    "module": "es2015",
-    "target": "es2015",
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "removeComments": false,
-    "sourceMap": true,
-    "importHelpers": false,
-    "declaration": true,
-    "declarationDir": "./packages",
-    "outDir": "./packages",
-    "rootDir": "./src",
-    "baseUrl": "./src",
-    "jsx": "react",
-    "lib": ["es2015.promise", "es5", "dom"]
-  },
-  "exclude": ["node_modules", "dist"]
+    "compileOnSave": true,
+    "buildOnSave": true,
+    "compilerOptions": {
+        "module": "es2015",
+        "target": "es2015",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "removeComments": false,
+        "sourceMap": true,
+        "importHelpers": false,
+        "declaration": true,
+        "declarationDir": "./packages",
+        "outDir": "./packages",
+        "rootDir": "./src",
+        "baseUrl": "./src",
+        "jsx": "react",
+        "lib": ["es2015.promise", "es5", "dom"]
+    },
+    "exclude": ["node_modules", "packages"]
 }

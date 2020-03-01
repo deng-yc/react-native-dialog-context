@@ -18,7 +18,9 @@
     },
     "homepage": "https://github.com/deng-yc/react-native-dialog-context#readme",
     "devDependencies": {
-        "@types/react": "^16.4.8",
-        "@types/react-native": "^0.56.6"
+        "@types/react": "^16.9.23",
+        "@types/react-native": "^0.61.17",
+        "react": "^16.13.0",
+        "react-native": "^0.61.5"
     }
 }

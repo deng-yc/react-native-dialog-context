@@ -1,6 +1,6 @@
-
 export interface IDialogContext {
     name?: string;
+    initialZIndex?: number;
     addHost: (dialog: IDialog) => Promise<void>;
     removeHost: (dialog: IDialog) => Promise<void>;
 }
@@ -9,7 +9,7 @@ export interface IDialog {
     id: string;
     owner: any;
     activationData: any;
-    context: IDialogContext,
+    context: IDialogContext;
     close: (...args) => any;
     element?: any;
 }
