@@ -5,6 +5,9 @@ const getNextDialogId = () => {
     return last_dialogId;
 };
 export class Dialog {
+    getNextDialogId() {
+        return getNextDialogId();
+    }
     /**
      * 新增context
      * @param name
@@ -55,10 +58,10 @@ export class Dialog {
      * @param obj
      * @param rest
      */
-    close(obj, ...args) {
+    close(obj, result) {
         var theDialog = this.getDialog(obj);
         if (theDialog) {
-            theDialog.close(...args);
+            theDialog.close(result);
         }
     }
     /**
@@ -68,16 +71,12 @@ export class Dialog {
      * @param context
      */
     show(obj, activationData, context = "default") {
-        var self = this;
         var dialogContext = contexts[context];
         if (!dialogContext) {
             throw new Error("dialogHost[" + context + "]不存在");
         }
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             var theDialog;
-            if (obj.keep) {
-                theDialog = this.getDialog(obj);
-            }
             const id = getNextDialogId();
             theDialog = theDialog || {
                 id: `dialog-${id}`,
@@ -85,11 +84,20 @@ export class Dialog {
                 zIndex: (dialogContext.initialZIndex || 10000) + id,
                 activationData,
                 context: dialogContext,
-                close: (...args) => {
+                closing(fn) {
+                    theDialog.closeingEvents = theDialog.closeingEvents || [];
+                    theDialog.closeingEvents.push(fn);
+                },
+                close: async (result) => {
+                    if (theDialog.closeingEvents) {
+                        for (const fn of theDialog.closeingEvents) {
+                            await fn();
+                        }
+                    }
                     dialogContext.removeHost(theDialog).then(() => {
-                        resolve(...args);
+                        resolve(result);
                     });
-                }
+                },
             };
             if (obj.prototype) {
                 obj.prototype.__dialog__ = function () {

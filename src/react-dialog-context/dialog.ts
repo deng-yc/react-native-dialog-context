@@ -10,6 +10,10 @@ const getNextDialogId = () => {
 };
 
 export class Dialog {
+    getNextDialogId() {
+        return getNextDialogId();
+    }
+
     /**
      * 新增context
      * @param name
@@ -19,7 +23,7 @@ export class Dialog {
         dialogContext.name = name;
         contexts[name] = dialogContext;
         var helperName = "show" + name.substr(0, 1).toUpperCase() + name.substr(1);
-        this[helperName] = function(obj, activationData) {
+        this[helperName] = function (obj, activationData) {
             return this.show(obj, activationData, name);
         };
     }
@@ -64,10 +68,10 @@ export class Dialog {
      * @param obj
      * @param rest
      */
-    close(obj, ...args: any[]) {
+    close(obj, result) {
         var theDialog = this.getDialog(obj);
         if (theDialog) {
-            theDialog.close(...args);
+            theDialog.close(result);
         }
     }
     /**
@@ -77,16 +81,12 @@ export class Dialog {
      * @param context
      */
     show<T>(obj: any, activationData?, context = "default"): Promise<T> {
-        var self = this;
         var dialogContext = contexts[context];
         if (!dialogContext) {
             throw new Error("dialogHost[" + context + "]不存在");
         }
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             var theDialog;
-            if (obj.keep) {
-                theDialog = this.getDialog(obj);
-            }
             const id = getNextDialogId();
             theDialog = theDialog || {
                 id: `dialog-${id}`,
@@ -94,14 +94,23 @@ export class Dialog {
                 zIndex: (dialogContext.initialZIndex || 10000) + id,
                 activationData,
                 context: dialogContext,
-                close: (...args) => {
+                closing(fn) {
+                    theDialog.closeingEvents = theDialog.closeingEvents || [];
+                    theDialog.closeingEvents.push(fn);
+                },
+                close: async (result: T) => {
+                    if (theDialog.closeingEvents) {
+                        for (const fn of theDialog.closeingEvents) {
+                            await fn();
+                        }
+                    }
                     dialogContext.removeHost(theDialog).then(() => {
-                        resolve(...args);
+                        resolve(result);
                     });
-                }
+                },
             };
             if (obj.prototype) {
-                obj.prototype.__dialog__ = function() {
+                obj.prototype.__dialog__ = function () {
                     if (this.props) {
                         return this.props.dialog;
                     }

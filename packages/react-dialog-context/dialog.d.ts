@@ -1,5 +1,6 @@
 import { IDialog, IDialogContext } from "./types";
 export declare class Dialog {
+    getNextDialogId(): number;
     /**
      * 新增context
      * @param name
@@ -26,7 +27,7 @@ export declare class Dialog {
      * @param obj
      * @param rest
      */
-    close(obj: any, ...args: any[]): void;
+    close(obj: any, result: any): void;
     /**
      * 显示对话框
      * @param obj
