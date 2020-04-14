@@ -7,9 +7,11 @@ export interface IDialogContext {
 export interface IDialog {
     id: string;
     owner: any;
+    zIndex: number;
     activationData: any;
     context: IDialogContext;
-    close: (...args: any[]) => any;
+    closing: (fn) => void;
+    close: (result?) => any;
     element?: any;
 }
 export interface IDialogObject {
