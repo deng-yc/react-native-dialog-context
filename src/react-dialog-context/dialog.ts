@@ -116,7 +116,9 @@ export class Dialog {
                     }
                 };
             } else {
-                obj.__dialog__ = theDialog;
+                try {
+                    obj.__dialog__ = theDialog;
+                } catch (ex) {}
             }
             dialogContext.addHost(theDialog);
         });

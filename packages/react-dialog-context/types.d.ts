@@ -10,8 +10,8 @@ export interface IDialog {
     zIndex: number;
     activationData: any;
     context: IDialogContext;
-    closing: (fn) => void;
-    close: (result?) => any;
+    closing: (fn: any) => void;
+    close: (result: any) => any;
     element?: any;
 }
 export interface IDialogObject {
